@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../service/api";
 import type { Patient } from "../types/Patients";
+import Logout from "../components/Logout";
 
 const Dashboard = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
@@ -19,6 +20,7 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Logout />
       <h1>Lista de pacientes</h1>
 
       {patients.map((patient) => (
