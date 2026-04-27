@@ -1,0 +1,72 @@
+import React from "react";
+import { useState } from "react";
+import api from "../service/api";
+import { useNavigate } from "react-router-dom";
+import { Bounce, toast } from "react-toastify";
+
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await api.post(`/auth/login`, {
+        login: email,
+        password: password,
+      });
+
+      localStorage.setItem("token", response.data.token);
+
+      Maps("/dashboard");
+    } catch (error) {
+      toast.error(
+        <div>
+          <span className="font-semibold">Erro ao logar usuário!</span><br />
+          Verifique se o email e senha estão corretos
+        </div>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        },
+      );
+    }
+  };
+
+  const Maps = useNavigate();
+
+  return (
+    <>
+      <div>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <label htmlFor="">Email:</label>
+          <input
+            type="email"
+            name=""
+            id=""
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor="">Senha:</label>
+          <input
+            type="password"
+            name=""
+            id=""
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleLogin}>Entrar</button>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default Login;
