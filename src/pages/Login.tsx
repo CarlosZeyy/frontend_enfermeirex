@@ -19,6 +19,23 @@ const Login = () => {
       localStorage.setItem("token", response.data.token);
 
       Maps("/dashboard");
+
+            toast.success(
+        <div>
+          <span className="font-semibold">Seja bem vindo! {}</span><br />
+        </div>,
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        },
+      );
     } catch (error) {
       toast.error(
         <div>
