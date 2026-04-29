@@ -1,30 +1,32 @@
-import React from "react";
 import { useState } from "react";
-import api from "../service/api";
 import { useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
+import api from "../service/api";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [coren, setCoren] = useState("");
 
   const Maps = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await api.post(`/auth/login`, {
-        login: email,
+      const response = await api.post(`/auth/register`, {
+        email: email,
         password: password,
+        coren: coren,
       });
 
       localStorage.setItem("token", response.data.token);
 
-      Maps("/dashboard");
+      Maps("/login");
 
-            toast.success(
+      toast.success(
         <div>
-          <span className="font-semibold">Seja bem vindo!</span><br />
+          <span className="font-semibold">Conta criada com sucesso!</span>
+          <br />
         </div>,
         {
           position: "top-right",
@@ -41,8 +43,9 @@ const Login = () => {
     } catch (error) {
       toast.error(
         <div>
-          <span className="font-semibold">Erro ao logar usuário!</span><br />
-          Verifique se o email e senha estão corretos
+          <span className="font-semibold">Erro ao criar usuário!</span>
+          <br />
+          Verifique se os campos de email, COREN e senha estão corretos.
         </div>,
         {
           position: "top-right",
@@ -66,10 +69,14 @@ const Login = () => {
           <label htmlFor="">Email:</label>
           <input
             type="email"
-            name=""
-            id=""
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor="">Coren:</label>
+          <input
+            type="text"
+            value={coren}
+            onChange={(e) => setCoren(e.target.value)}
           />
           <label htmlFor="">Senha:</label>
           <input
@@ -79,11 +86,13 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleLogin} className="cursor-pointer">Entrar</button>
+          <button onClick={handleRegister} className="cursor-pointer">
+            Entrar
+          </button>
         </form>
       </div>
     </>
   );
 };
 
-export default Login;
+export default Register;
