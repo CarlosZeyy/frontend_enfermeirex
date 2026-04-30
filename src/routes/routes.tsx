@@ -4,17 +4,53 @@ import Dashboard from "../pages/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import CreatePatient from "../pages/CreatePatient";
 import EditPatient from "../pages/EditPatient";
+import Register from "../pages/Register";
+import Welcome from "../pages/Welcome";
+import Home from "../pages/HomePage";
+import CreateAppointment from "../pages/CreateAppointment";
+import Appointments from "../pages/Appointments";
 
 export const routes = () => {
   return (
     <Routes>
-      <Route path="/login" Component={Login} />
+      <Route path="/" element={<Welcome />} />
+
+      <Route path="/login" element={<Login />} />
+
+      <Route path="/register" element={<Register />} />
 
       <Route
         path="/dashboard"
         element={
           <PrivateRoute>
             <Dashboard />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/home"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/appointments"
+        element={
+          <PrivateRoute>
+            <Appointments />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/appointments/new"
+        element={
+          <PrivateRoute>
+            <CreateAppointment />
           </PrivateRoute>
         }
       />
@@ -27,6 +63,7 @@ export const routes = () => {
           </PrivateRoute>
         }
       />
+
       <Route
         path="/patient/edit"
         element={

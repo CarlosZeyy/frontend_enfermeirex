@@ -5,6 +5,7 @@ import Logout from "../components/Logout";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { Bounce, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Home from "../components/Home";
 
 const Dashboard = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
@@ -91,7 +92,10 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Logout />
+      <div>
+        <Home />
+        <Logout />
+      </div>
       <h1>Lista de pacientes</h1>
 
       {patients.map((patient) => (

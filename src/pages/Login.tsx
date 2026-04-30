@@ -20,11 +20,12 @@ const Login = () => {
 
       localStorage.setItem("token", response.data.token);
 
-      Maps("/dashboard");
+      Maps("/home");
 
-            toast.success(
+      toast.success(
         <div>
-          <span className="font-semibold">Seja bem vindo!</span><br />
+          <span className="font-semibold">Seja bem vindo!</span>
+          <br />
         </div>,
         {
           position: "top-right",
@@ -41,7 +42,8 @@ const Login = () => {
     } catch (error) {
       toast.error(
         <div>
-          <span className="font-semibold">Erro ao logar usuário!</span><br />
+          <span className="font-semibold">Erro ao logar usuário!</span>
+          <br />
           Verifique se o email e senha estão corretos
         </div>,
         {
@@ -62,24 +64,24 @@ const Login = () => {
   return (
     <>
       <div>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleLogin}>
           <label htmlFor="">Email:</label>
           <input
             type="email"
-            name=""
-            id=""
+            placeholder="email@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <label htmlFor="">Senha:</label>
           <input
             type="password"
-            name=""
-            id=""
+            placeholder="Ex: Senh@123"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleLogin} className="cursor-pointer">Entrar</button>
+          <button type="submit" className="cursor-pointer">
+            Entrar
+          </button>
         </form>
       </div>
     </>

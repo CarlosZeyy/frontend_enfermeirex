@@ -13,13 +13,11 @@ const Register = () => {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await api.post(`/auth/register`, {
+      await api.post(`/auth/register`, {
         email: email,
         password: password,
         coren: coren,
       });
-
-      localStorage.setItem("token", response.data.token);
 
       Maps("/login");
 
@@ -65,30 +63,29 @@ const Register = () => {
   return (
     <>
       <div>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleRegister}>
           <label htmlFor="">Email:</label>
           <input
             type="email"
             value={email}
+            placeholder="email@email.com"
             onChange={(e) => setEmail(e.target.value)}
           />
           <label htmlFor="">Coren:</label>
           <input
             type="text"
+            placeholder="COREN-SP 123456-ENF"
             value={coren}
             onChange={(e) => setCoren(e.target.value)}
           />
           <label htmlFor="">Senha:</label>
           <input
             type="password"
-            name=""
-            id=""
+            placeholder="Senh@123"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleRegister} className="cursor-pointer">
-            Entrar
-          </button>
+          <button type="submit" className="cursor-pointer">Registrar</button>
         </form>
       </div>
     </>

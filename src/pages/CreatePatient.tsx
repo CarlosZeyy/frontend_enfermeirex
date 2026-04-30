@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import api from "../service/api";
 import { toast, Bounce } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Logout from "../components/Logout";
+import Home from "../components/Home";
 
 const CreatePatient = () => {
   const [name, setName] = useState("");
@@ -65,6 +67,10 @@ const CreatePatient = () => {
 
   return (
     <div>
+      <div>
+        <Home />
+        <Logout />
+      </div>
       <form onSubmit={handleCreatePatient}>
         <label htmlFor="">Nome:</label>
         <input

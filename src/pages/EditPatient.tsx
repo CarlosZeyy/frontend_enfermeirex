@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import api from "../service/api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
+import Logout from "../components/Logout";
+import Home from "../components/Home";
 
 const EditPatient = () => {
   const [name, setName] = useState("");
@@ -78,6 +80,10 @@ const EditPatient = () => {
 
   return (
     <div>
+      <div>
+        <Home />
+        <Logout />
+      </div>
       <form onSubmit={handleUpdatePatient}>
         <label htmlFor="">Nome:</label>
         <input
