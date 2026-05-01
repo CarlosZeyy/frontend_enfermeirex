@@ -63,6 +63,8 @@ const Dashboard = () => {
         },
       );
     } catch (error) {
+      console.error(error);
+
       toast.error(
         <div>
           <span className="font-semibold">Erro ao apagar paciente!</span>

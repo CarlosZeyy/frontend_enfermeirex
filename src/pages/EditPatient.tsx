@@ -85,28 +85,28 @@ const EditPatient = () => {
         <Logout />
       </div>
       <form onSubmit={handleUpdatePatient}>
-        <label htmlFor="">Nome:</label>
+        <label>Nome:</label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
 
-        <label htmlFor="">Telefone:</label>
+        <label>Telefone:</label>
         <input
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
 
-        <label htmlFor="">Endereço:</label>
+        <label>Endereço:</label>
         <input
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
 
-        <label htmlFor="">Observação:</label>
+        <label>Observação:</label>
         <textarea
           placeholder="Campo de observação"
           value={obs}

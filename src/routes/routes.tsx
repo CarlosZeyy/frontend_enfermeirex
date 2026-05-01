@@ -9,6 +9,7 @@ import Welcome from "../pages/Welcome";
 import Home from "../pages/HomePage";
 import CreateAppointment from "../pages/CreateAppointment";
 import Appointments from "../pages/Appointments";
+import EditAppointments from "../pages/EditAppointments";
 
 export const routes = () => {
   return (
@@ -51,6 +52,15 @@ export const routes = () => {
         element={
           <PrivateRoute>
             <CreateAppointment />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/appointments/edit"
+        element={
+          <PrivateRoute>
+            <EditAppointments />
           </PrivateRoute>
         }
       />
