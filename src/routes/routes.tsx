@@ -10,6 +10,7 @@ import Home from "../pages/HomePage";
 import CreateAppointment from "../pages/CreateAppointment";
 import Appointments from "../pages/Appointments";
 import EditAppointments from "../pages/EditAppointments";
+import PatientRecord from "../pages/PatientRecord";
 
 export const routes = () => {
   return (
@@ -79,6 +80,15 @@ export const routes = () => {
         element={
           <PrivateRoute>
             <EditPatient />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/patient/record"
+        element={
+          <PrivateRoute>
+            <PatientRecord />
           </PrivateRoute>
         }
       />

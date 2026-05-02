@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../service/api";
 import type { Patient } from "../types/Patients";
 import Logout from "../components/Logout";
-import { FaTrash, FaEdit } from "react-icons/fa";
+import { FaTrash, FaEdit, FaClipboardList } from "react-icons/fa";
 import { Bounce, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Home from "../components/Home";
@@ -36,7 +36,7 @@ const Dashboard = () => {
     }
   }
 
-  async function handleDelete(id: number) {
+  async function handleDeletePatient(id: number) {
     try {
       await api.delete(`/patients/${id}`);
 
@@ -108,11 +108,17 @@ const Dashboard = () => {
           <p>Observação: {patient.obs}</p>
           <FaTrash
             className="cursor-pointer"
-            onClick={() => handleDelete(patient.id)}
+            onClick={() => handleDeletePatient(patient.id)}
           />
+
           <FaEdit
             className="cursor-pointer"
             onClick={() => Maps("/patient/edit", { state: patient })}
+          />
+
+          <FaClipboardList
+            className="cursor-pointer"
+            onClick={() => Maps("/patient/record", { state: patient })}
           />
           <hr />
         </div>
