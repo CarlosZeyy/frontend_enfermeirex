@@ -329,7 +329,7 @@ const PatientRecord = () => {
 
   async function handleDeleteDocument(id: number) {
     try {
-      await api.delete(`/uploads/${id}`);
+      await api.delete(`/uploads/patient/${id}`);
 
       const listDocumentsUpdated = documents.filter(
         (document) => document.documentId !== id,
