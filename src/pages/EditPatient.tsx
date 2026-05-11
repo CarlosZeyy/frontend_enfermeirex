@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../service/api";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Logout from "../components/Logout";
 import Home from "../components/Home";
 
@@ -14,7 +14,7 @@ const EditPatient = () => {
   const location = useLocation();
   const patient = location.state;
 
-  const Maps = useNavigate();
+  const navigate = useNavigate();
 
   async function handleUpdatePatient(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,24 +28,13 @@ const EditPatient = () => {
         obs,
       });
 
-      Maps("/dashboard");
+      navigate("/dashboard");
 
       toast.success(
         <div>
           <p className="font-semibold">Usuario atualizado com sucesso!</p>
           <br />
         </div>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       toast.error(
@@ -54,17 +43,6 @@ const EditPatient = () => {
           <br />
           Verifique se os dados foram preenchidos corretamente.
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }

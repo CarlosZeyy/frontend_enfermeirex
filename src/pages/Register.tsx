@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import api from "../service/api";
 
 const Register = () => {
@@ -8,10 +8,26 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [coren, setCoren] = useState("");
 
-  const Maps = useNavigate();
+  const navigate = useNavigate();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!email) {
+      toast.warning("Preencha todos os campos corretamente");
+      return;
+    }
+
+    if (!coren) {
+      toast.warning("Preencha todos os campos corretamente");
+      return;
+    }
+
+    if (!password) {
+      toast.warning("Preencha todos os campos corretamente");
+      return;
+    }
+
     try {
       await api.post(`/auth/register`, {
         email: email,
@@ -19,43 +35,25 @@ const Register = () => {
         coren: coren,
       });
 
-      Maps("/login");
+      navigate("/login");
 
       toast.success(
         <div>
           <span className="font-semibold">Conta criada com sucesso!</span>
           <br />
         </div>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
-    } catch (error) {
+    } catch (error: any) {
+      console.error(error);
+
+      const backendMessage = error.response?.data?.message || "Erro desconhecido ao criar usuário!";
+
       toast.error(
         <div>
           <span className="font-semibold">Erro ao criar usuário!</span>
           <br />
-          Verifique se os campos de email, COREN e senha estão corretos.
+          {backendMessage}
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   };
@@ -85,7 +83,9 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" className="cursor-pointer">Registrar</button>
+          <button type="submit" className="cursor-pointer">
+            Registrar
+          </button>
         </form>
       </div>
     </>

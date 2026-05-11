@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
 
 const Logout = () => {
-  const Maps = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    Maps("/");
+    navigate("/");
   };
   return (
     <button onClick={handleLogout} className="cursor-pointer">

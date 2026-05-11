@@ -5,7 +5,7 @@ import Logout from "../components/Logout";
 import type { Appointment } from "../types/Appointment";
 import { useNavigate } from "react-router-dom";
 import { FaTrash, FaEdit } from "react-icons/fa";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -29,17 +29,6 @@ const Appointments = () => {
         <div>
           <span className="font-semibold">Agendamento apagado com sucesso</span>
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       console.error(error);
@@ -48,22 +37,11 @@ const Appointments = () => {
         <div>
           <span className="font-semibold">Erro ao apagar agendamentro!</span>
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
 
-  const Maps = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchAppointments();
@@ -87,7 +65,9 @@ const Appointments = () => {
           />
           <button
             className="cursor-pointer"
-            onClick={() => Maps("/appointments/edit", { state: appointment })}
+            onClick={() =>
+              navigate("/appointments/edit", { state: appointment })
+            }
           >
             <FaEdit />
           </button>

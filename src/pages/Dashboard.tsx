@@ -3,7 +3,7 @@ import api from "../service/api";
 import type { Patient } from "../types/Patients";
 import Logout from "../components/Logout";
 import { FaTrash, FaEdit, FaClipboardList } from "react-icons/fa";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Home from "../components/Home";
 
@@ -21,17 +21,6 @@ const Dashboard = () => {
           <br />
           Verifique sua conexão e tente novamente!
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
@@ -50,17 +39,6 @@ const Dashboard = () => {
         <div>
           <span className="font-semibold">Paciente apagado com sucesso</span>
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       console.error(error);
@@ -71,22 +49,11 @@ const Dashboard = () => {
           <br />
           <p>Verifique se o paciente não possui nenhum agendamento marcado.</p>
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
 
-  const Maps = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     searchPatients();
@@ -113,12 +80,12 @@ const Dashboard = () => {
 
           <FaEdit
             className="cursor-pointer"
-            onClick={() => Maps("/patient/edit", { state: patient })}
+            onClick={() => navigate("/patient/edit", { state: patient })}
           />
 
           <FaClipboardList
             className="cursor-pointer"
-            onClick={() => Maps("/patient/record", { state: patient })}
+            onClick={() => navigate("/patient/record", { state: patient })}
           />
           <hr />
         </div>

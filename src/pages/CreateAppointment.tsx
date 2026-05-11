@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { SelectOption } from "../types/SelectOption";
 import api from "../service/api";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Select from "react-select";
 
 const CreateAppointment = () => {
@@ -12,7 +12,7 @@ const CreateAppointment = () => {
   const [date, setDate] = useState("");
   const [patients, setPatients] = useState([]);
 
-  const Maps = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadPatients = async () => {
@@ -40,24 +40,13 @@ const CreateAppointment = () => {
         data: date,
       });
 
-      Maps("/appointments");
+      navigate("/appointments");
 
       toast.success(
         <div>
           <p className="font-semibold">Agendamento criado com sucesso!</p>
           <br />
         </div>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       console.error("Erro ao criar agendamento", error);
@@ -66,17 +55,6 @@ const CreateAppointment = () => {
           <p className="font-semibold">Erro ao criar agendamento</p>
           <br />
         </div>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }

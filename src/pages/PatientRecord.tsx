@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../service/api";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Home from "../components/Home";
 import Logout from "../components/Logout";
 import type { Medications } from "../types/Medications";
@@ -35,17 +35,6 @@ const PatientRecord = () => {
           <br />
           Verifique sua conexão e tente novamente!
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
@@ -64,17 +53,6 @@ const PatientRecord = () => {
           <br />
           Verifique sua conexão e tente novamente!
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
@@ -94,17 +72,6 @@ const PatientRecord = () => {
           <br />
           Verifique sua conexão e tente novamente!
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
@@ -128,17 +95,6 @@ const PatientRecord = () => {
           <p className="font-semibold">Novo medicamento salvo com sucesso!</p>
           <br />
         </div>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       console.error(error);
@@ -150,17 +106,6 @@ const PatientRecord = () => {
           <br />
           Verifique sua conexão e tente novamente!
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
@@ -182,17 +127,6 @@ const PatientRecord = () => {
           <p className="font-semibold">Nova anotação salva com sucesso!</p>
           <br />
         </div>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       console.error(error);
@@ -204,17 +138,6 @@ const PatientRecord = () => {
           <br />
           Verifique sua conexão e tente novamente!
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
@@ -240,17 +163,6 @@ const PatientRecord = () => {
 
       toast.success(
         <p className="font-semibold">Upload do arquivo feito com sucesso!</p>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       console.error("erro ao enviar arquivo: ", error);
@@ -262,17 +174,6 @@ const PatientRecord = () => {
           <br />
           Verifique sua conexão e tente novamente!
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
@@ -290,17 +191,6 @@ const PatientRecord = () => {
         <div>
           <span className="font-semibold">Medicamento apagado com sucesso</span>
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       console.error(error);
@@ -312,17 +202,6 @@ const PatientRecord = () => {
           <p>Verifique sua conexão com a internet.</p>
           <p>Recarregue a pagina e veja se o medicamento foi apagado.</p>
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
@@ -340,17 +219,6 @@ const PatientRecord = () => {
         <div>
           <span className="font-semibold">Arquivo apagado com sucesso</span>
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       console.error(error);
@@ -362,22 +230,11 @@ const PatientRecord = () => {
           <p>Verifique sua conexão com a internet.</p>
           <p>Recarregue a pagina e veja se o arquivo foi apagado.</p>
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }
 
-  const Maps = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     searchMedications();
@@ -455,7 +312,10 @@ const PatientRecord = () => {
             onClick={() => handleDeleteMedication(medication.medicationId)}
           />
 
-          <button className="cursor-pointer" onClick={() => Maps("/dashboard")}>
+          <button
+            className="cursor-pointer"
+            onClick={() => navigate("/dashboard")}
+          >
             Atualizar medicação
           </button>
         </div>

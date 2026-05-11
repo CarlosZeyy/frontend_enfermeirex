@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import api from "../service/api";
-import { toast, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Logout from "../components/Logout";
 import Home from "../components/Home";
@@ -11,7 +11,7 @@ const CreatePatient = () => {
   const [phone, setPhone] = useState("");
   const [obs, setObs] = useState("");
 
-  const Maps = useNavigate();
+  const navigate = useNavigate();
 
   async function handleCreatePatient(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,24 +24,13 @@ const CreatePatient = () => {
         obs,
       });
 
-      Maps("/dashboard");
+      navigate("/dashboard");
 
       toast.success(
         <div>
           <p className="font-semibold">Usuario criado com sucesso!</p>
           <br />
         </div>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
       toast.error(
@@ -50,17 +39,6 @@ const CreatePatient = () => {
           <br />
           Verifique se os dados foram preenchidos corretamente.
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   }

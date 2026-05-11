@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from "react";
 import api from "../service/api";
 import { useNavigate } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [identification, setIdentification] = useState("");
   const [password, setPassword] = useState("");
 
   const Maps = useNavigate();
@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await api.post(`/auth/login`, {
-        login: email,
+        login: identification,
         password: password,
       });
 
@@ -27,36 +27,15 @@ const Login = () => {
           <span className="font-semibold">Seja bem vindo!</span>
           <br />
         </div>,
-        {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     } catch (error) {
+      console.error(error)
       toast.error(
         <div>
           <span className="font-semibold">Erro ao logar usuário!</span>
           <br />
           Verifique se o email e senha estão corretos
         </div>,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        },
       );
     }
   };
@@ -65,12 +44,12 @@ const Login = () => {
     <>
       <div>
         <form onSubmit={handleLogin}>
-          <label htmlFor="">Email:</label>
+          <label htmlFor="">Email ou COREN:</label>
           <input
-            type="email"
-            placeholder="email@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="email@email.com ou COREN-SP 123456-SP"
+            value={identification}
+            onChange={(e) => setIdentification(e.target.value)}
           />
           <label htmlFor="">Senha:</label>
           <input
