@@ -9,7 +9,7 @@ const Welcome = () => {
         <p>Ja possui conta em nosso sistema? faça o login</p>
         <Link to={"/login"}>Login</Link>
 
-        <Link to={"/auth/forgot-password"}>Esqueceu a senha?</Link>
+        <Link to={"/forgot-password"}>Esqueceu a senha?</Link>
         
         <p>Caso não tenha se cadastrado ainda faça o seu registro aqui</p>
         <Link to={"/register"}>Registrar</Link>

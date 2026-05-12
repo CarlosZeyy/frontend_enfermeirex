@@ -12,6 +12,7 @@ import Appointments from "../pages/Appointments";
 import EditAppointments from "../pages/EditAppointments";
 import PatientRecord from "../pages/PatientRecord";
 import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
 
 export const routes = () => {
   return (
@@ -22,7 +23,10 @@ export const routes = () => {
 
       <Route path="/register" element={<Register />} />
 
-      <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+
+      <Route path="/reset-password" element={<ResetPassword />} />
+
 
       <Route
         path="/dashboard"

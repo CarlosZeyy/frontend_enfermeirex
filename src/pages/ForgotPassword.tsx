@@ -28,15 +28,15 @@ const ForgotPassword = () => {
     try {
       setIsLoading(true);
 
-      await api.post(`auth/forgot-password`, {
+      const response = await api.post(`auth/forgot-password`, {
         identification: identification,
       });
 
+      console.log(response.data);
+
       toast.info(
         <div>
-          <p className="font-semibold">
-            Cheque seu email para recuperar a senha
-          </p>
+          <p className="font-semibold">{response.data.message}</p>
           <br />
         </div>,
       );
@@ -44,12 +44,14 @@ const ForgotPassword = () => {
       setTimeout(() => {
         navigate("/");
       }, 3000);
-    } catch (error) {
+    } catch (error: any) {
+      const backendError =
+        error.response?.data?.message || "Erro ao solicitar nova senha";
       toast.error(
         <div>
           <p className="font-semibold">Erro ao solicitar nova senha</p>
           <br />
-          <p>Tente novamente</p>
+          <p>{backendError}</p>
         </div>,
       );
     } finally {
