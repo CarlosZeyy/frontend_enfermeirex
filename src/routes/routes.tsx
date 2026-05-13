@@ -13,6 +13,7 @@ import EditAppointments from "../pages/EditAppointments";
 import PatientRecord from "../pages/PatientRecord";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
+import Profile from "../pages/Profile";
 
 export const routes = () => {
   return (
@@ -26,7 +27,6 @@ export const routes = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
 
       <Route path="/reset-password" element={<ResetPassword />} />
-
 
       <Route
         path="/dashboard"
@@ -42,6 +42,15 @@ export const routes = () => {
         element={
           <PrivateRoute>
             <Home />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/me"
+        element={
+          <PrivateRoute>
+            <Profile />
           </PrivateRoute>
         }
       />
