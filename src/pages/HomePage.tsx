@@ -28,7 +28,8 @@ const Home = () => {
 
       <Link to={"/dashboard"}>Dashboard</Link>
       <Link to={"/me"}>Meu Perfil</Link>
-      <Link to={"/appointments"}>Agendamentos</Link>
+      <Link to={"/appointments"}>Ver Agendamentos</Link>
+      <Link to={"/appointments/new"}>Criar um novo Agendamento</Link>
       <Link to={"/patient/new"}>Criar novo paciente</Link>
     </div>
   );
