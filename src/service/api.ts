@@ -27,9 +27,7 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-      localStorage.removeItem("token");
-
-      window.location.href = "/";
+      window.location.href = "/refresh";
 
       return Promise.reject(error);
     }

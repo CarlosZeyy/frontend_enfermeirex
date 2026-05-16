@@ -45,15 +45,13 @@ const CreateAppointment = () => {
       toast.success(
         <div>
           <p className="font-semibold">Agendamento criado com sucesso!</p>
-          <br />
-        </div>,
+        </div>
       );
     } catch (error) {
       console.error("Erro ao criar agendamento", error);
       toast.error(
         <div>
           <p className="font-semibold">Erro ao criar agendamento</p>
-          <br />
         </div>,
       );
     }
