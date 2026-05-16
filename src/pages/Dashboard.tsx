@@ -9,6 +9,7 @@ import Home from "../components/Home";
 
 const Dashboard = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
+  const [search, setSearch] = useState("");
 
   async function searchPatients() {
     try {
@@ -55,6 +56,10 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
 
+  const filteredPatients = patients.filter((patient) =>
+    patient.name.toLowerCase().includes(search.toLowerCase()),
+  );
+
   useEffect(() => {
     searchPatients();
   }, []);
@@ -67,7 +72,14 @@ const Dashboard = () => {
       </div>
       <h1>Lista de pacientes</h1>
 
-      {patients.map((patient) => (
+      <input
+        type="text"
+        placeholder="Digite o nome do paciente aqui"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {filteredPatients.map((patient) => (
         <div key={patient.id}>
           <p>Nome: {patient.name}</p>
           <p>Telefone: {patient.phone}</p>
