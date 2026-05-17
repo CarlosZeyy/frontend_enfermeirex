@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../service/api";
 import { Link, useNavigate } from "react-router-dom";
@@ -95,11 +95,11 @@ const Profile = () => {
   const handleSwitchUsername = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await api.put("/users/username", {
+      await api.put("/users/username", {
         name: username,
       });
 
-      console.log(response.data);
+      toast.success("Nome atualizado com sucesso");
     } catch (error) {
       console.error(error);
       toast.error("Erro ao atualizar nome");
@@ -109,16 +109,26 @@ const Profile = () => {
   const handleSwitchAvatar = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await api.put("/users/avatar", {
+      await api.put("/users/avatar", {
         avatar: icon,
       });
 
-      console.log(response.data);
+      toast.success("Avatar atualizado com sucesso");
     } catch (error) {
       console.error(error);
       toast.error("Erro ao atualizar avatar de perfil");
     }
   };
+
+  useEffect(() => {
+    async function getData() {
+      const response = await api.get(`/users/me`);
+      setIcon(response.data.avatar);
+      setUsername(response.data.name);
+    }
+
+    getData();
+  }, []);
 
   return (
     <>
@@ -146,7 +156,6 @@ const Profile = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-          
           <div className="bg-white p-6 rounded-2xl shadow-2xl w-[90%] max-w-md">
             <h2 className="text-xl font-bold text-center text-gray-800 mb-6">
               Escolha seu Avatar
@@ -159,12 +168,12 @@ const Profile = () => {
                   src={`/icons/${iconName}`}
                   alt={iconName}
                   onClick={() => {
-                    setIcon(iconName); 
+                    setIcon(iconName);
                     setIsModalOpen(false);
                   }}
                   className={`w-16 h-16 rounded-full cursor-pointer transition-all hover:scale-110 object-cover ${
-                    icon === iconName 
-                      ? "border-4 border-blue-500 scale-110 shadow-md" 
+                    icon === iconName
+                      ? "border-4 border-blue-500 scale-110 shadow-md"
                       : "opacity-60 hover:opacity-100"
                   }`}
                 />
@@ -178,7 +187,6 @@ const Profile = () => {
               Cancelar
             </button>
           </div>
-          
         </div>
       )}
 
