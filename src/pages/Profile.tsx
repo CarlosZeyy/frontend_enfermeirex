@@ -8,7 +8,23 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [icon, setIcon] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const icons = [
+    "cerebro.png",
+    "pico-pico.png",
+    "choquinha.png",
+    "zina.png",
+    "pitinha.png",
+    "jao.png",
+    "maria.png",
+    "nina.png",
+    "ivonete.png",
+    "nega.png",
+    "zefa.png",
+  ];
 
   const navigate = useNavigate();
 
@@ -84,12 +100,87 @@ const Profile = () => {
       });
 
       console.log(response.data);
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao atualizar nome");
+    }
+  };
+
+  const handleSwitchAvatar = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await api.put("/users/avatar", {
+        avatar: icon,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao atualizar avatar de perfil");
+    }
   };
 
   return (
     <>
       <div>Area do usuário</div>
+
+      <div className="flex flex-col items-center mb-8 mt-4">
+        <img
+          src={icon ? `/icons/${icon}` : "/icons/anonimo.png"}
+          alt="Meu Avatar"
+          onClick={() => setIsModalOpen(true)}
+          className="w-24 h-24 rounded-full object-cover border-4 bg-amber-300 border-blue-500 shadow-lg cursor-pointer hover:opacity-80 transition-all hover:scale-105"
+        />
+
+        <p className="mt-2 text-sm text-gray-600 font-medium">
+          Clique na imagem para alterar
+        </p>
+
+        <button
+          onClick={handleSwitchAvatar}
+          className="mt-4 px-6 py-2 cursor-pointer bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Salvar Avatar
+        </button>
+      </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+          
+          <div className="bg-white p-6 rounded-2xl shadow-2xl w-[90%] max-w-md">
+            <h2 className="text-xl font-bold text-center text-gray-800 mb-6">
+              Escolha seu Avatar
+            </h2>
+
+            <div className="grid grid-cols-4 gap-4 mb-6">
+              {icons.map((iconName) => (
+                <img
+                  key={iconName}
+                  src={`/icons/${iconName}`}
+                  alt={iconName}
+                  onClick={() => {
+                    setIcon(iconName); 
+                    setIsModalOpen(false);
+                  }}
+                  className={`w-16 h-16 rounded-full cursor-pointer transition-all hover:scale-110 object-cover ${
+                    icon === iconName 
+                      ? "border-4 border-blue-500 scale-110 shadow-md" 
+                      : "opacity-60 hover:opacity-100"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="w-full py-2 bg-red-100 text-red-600 rounded-lg font-bold hover:bg-red-200 transition-colors"
+            >
+              Cancelar
+            </button>
+          </div>
+          
+        </div>
+      )}
 
       <div>
         <form onSubmit={handleSwitchUsername}>
