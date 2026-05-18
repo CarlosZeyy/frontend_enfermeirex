@@ -418,12 +418,12 @@ const PatientRecord = () => {
             onSubmit={handleCreateAnnotation}
             className="flex flex-col md:flex-row gap-3 mb-8"
           >
-            <input
-              type="text"
+            <textarea
               placeholder="Digite uma nova anotação clínica..."
+              rows={5}
               value={annotationText}
               onChange={(e) => setAnnotationText(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition-all"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition-all resize-none"
               required
             />
             <button
@@ -455,7 +455,7 @@ const PatientRecord = () => {
                 </summary>
 
                 <div className="p-4 border-t border-slate-200 bg-white rounded-b-xl relative">
-                  <p className="text-gray-800 whitespace-pre-wrap pr-14 leading-relaxed text-sm">
+                  <p className="text-gray-800 whitespace-pre-wrap break-all pr-14 leading-relaxed text-sm">
                     {ann.text}
                   </p>
 
