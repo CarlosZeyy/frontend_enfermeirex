@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../service/api";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,7 +9,17 @@ const Login = () => {
   const [identification, setIdentification] = useState("");
   const [password, setPassword] = useState("");
 
-  const Maps = useNavigate();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/home");
+    }
+
+    if (localStorage.getItem("refreshToken")) {
+      navigate("/home");
+    }
+  }, [])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,8 +30,9 @@ const Login = () => {
       });
 
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
 
-      Maps("/home");
+      navigate("/home");
 
       toast.success(
         <div>

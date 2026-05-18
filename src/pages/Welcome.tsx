@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {
   HeartPulse,
   Stethoscope,
@@ -29,7 +29,19 @@ const features = [
 ];
 
 const Welcome = () => {
+  const navigate = useNavigate();
+
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/home");
+    }
+
+    if (localStorage.getItem("refreshToken")) {
+      navigate("/home");
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-gray-900">
@@ -48,7 +60,7 @@ const Welcome = () => {
               className="px-5 py-2.5 bg-red-600 text-white font-semibold text-sm rounded-full hover:bg-red-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0"
             >
               <div className="flex gap-2 justify-center items-center">
-                <FaUserMd /> 
+                <FaUserMd />
                 <p>Entrar</p>
               </div>
             </Link>
