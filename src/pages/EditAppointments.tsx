@@ -4,6 +4,7 @@ import api from "../service/api";
 import Home from "../components/Home";
 import Logout from "../components/Logout";
 import { toast } from "react-toastify";
+import { CalendarCheck } from "lucide-react";
 
 const EditAppointments = () => {
   const [data, setData] = useState("");
@@ -58,30 +59,61 @@ const EditAppointments = () => {
   }, [appointment]);
 
   return (
-    <div>
-      <div>
+    <div className="min-h-screen bg-slate-50 font-sans text-gray-900 pb-12">
+      <div className="bg-white shadow-sm px-6 py-4 flex justify-between items-center mb-8">
         <Home />
         <Logout />
       </div>
-      <form onSubmit={handleUpdateAppointment}>
-        <label>Data: </label>
-        <input
-          type="datetime-local"
-          value={data}
-          onChange={(e) => setData(e.target.value)}
-        />
 
-        <label>Status:</label>
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="AGENDADO">AGENDADO</option>
-          <option value="CONCLUIDO">CONCLUIDO</option>
-          <option value="CANCELADO">CANCELADO</option>
-        </select>
+      <div className="max-w-2xl mx-auto px-4">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2.5 bg-red-100 rounded-lg">
+            <CalendarCheck className="w-6 h-6 text-red-600" />
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+            Editar Agendamento
+          </h1>
+        </div>
 
-        <button type="submit" className="cursor-pointer">
-          Atualizar Agendamento
-        </button>
-      </form>
+        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+          <form onSubmit={handleUpdateAppointment} className="space-y-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                Data e Hora
+              </label>
+              <input
+                type="datetime-local"
+                value={data}
+                onChange={(e) => setData(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition-all"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                Status do Atendimento
+              </label>
+              <select
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition-all bg-white"
+              >
+                <option value="AGENDADO">AGENDADO</option>
+                <option value="CONCLUIDO">CONCLUIDO</option>
+                <option value="CANCELADO">CANCELADO</option>
+                <option value="EXPIRADO">EXPIRADO</option>
+              </select>
+            </div>
+            <div className="pt-4 flex justify-end">
+              <button
+                type="submit"
+                className="px-8 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-all shadow-md transform hover:-translate-y-0.5 cursor-pointer"
+              >
+                Atualizar Agendamento
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
